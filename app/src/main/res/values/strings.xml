@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">COVIDUniversity</string>
+    <string name="login_hint">Please click the photo to change picture of yours.</string>
 </resources>
