@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "550108530583-rcs6r20lmvd1pjlk6qpto5pb1kjoesp2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.coviduniversity",
+            "certificate_hash": "93ee0361752d26adfd6e4e4abe4882e990ae8b0b"
+          }
+        },
+        {
           "client_id": "550108530583-lepou5r7afnqj4bj21lj4vscbtdsf3od.apps.googleusercontent.com",
           "client_type": 3
         }
