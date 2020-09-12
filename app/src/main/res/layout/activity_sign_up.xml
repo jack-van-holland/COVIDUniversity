@@ -7,7 +7,7 @@
     android:layout_height="match_parent">
 
     <Button
-        android:id="@+id/login_button"
+        android:id="@+id/sign_up_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="128dp"
@@ -17,7 +17,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
-        android:id="@+id/login_photo"
+        android:id="@+id/sign_up_photo"
         android:layout_width="119dp"
         android:layout_height="106dp"
         android:layout_marginTop="101dp"
@@ -46,8 +46,7 @@
         android:layout_marginTop="14dp"
         android:layout_marginBottom="15dp"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name"
+        android:hint="Name"
         app:layout_constraintBottom_toTopOf="@+id/sign_up_email"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -60,8 +59,7 @@
         android:layout_marginTop="15dp"
         android:layout_marginBottom="15dp"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="email"
+        android:hint="email"
         app:layout_constraintBottom_toTopOf="@+id/signup_password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -74,8 +72,7 @@
         android:layout_marginTop="15dp"
         android:layout_marginBottom="18dp"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="password"
+        android:hint="password"
         app:layout_constraintBottom_toTopOf="@+id/login_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -14,6 +14,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DatabaseReference;
@@ -36,7 +37,7 @@ public class SignUp extends AppCompatActivity {
 
         final TextView passwordBox = findViewById(R.id.signup_password);
 
-        Button submit = findViewById(R.id.button);
+        Button submit = findViewById(R.id.sign_up_button);
 
         auth = FirebaseAuth.getInstance();
 
@@ -51,19 +52,22 @@ public class SignUp extends AppCompatActivity {
                 info[0] = emailBox.getText().toString();
                 info[1] = passwordBox.getText().toString();
                 info[2] = nameBox.getText().toString();
+                createAccount(info);
             }
         });
-
+    }
+    public void createAccount(final String[] info) {
         auth.createUserWithEmailAndPassword(info[0], info[1])
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
 
                         if (task.isSuccessful()) {
-                            onAuthSuccess(task.getResult().getUser(), info[3]);
+                            onAuthSuccess(task.getResult().getUser(), info[2]);
                         } else {
-                            Toast.makeText(SignUp.this, "Sign Up Failed", Toast.LENGTH_SHORT).show();
-                        }
+                            FirebaseAuthException e = (FirebaseAuthException )task.getException();
+                            Toast.makeText(SignUp.this, "Failed Registration: "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                            return;                        }
                     }
                 });
     }
