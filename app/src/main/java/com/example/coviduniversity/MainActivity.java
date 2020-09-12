@@ -41,17 +41,10 @@ public class MainActivity extends AppCompatActivity {
         dbref.child("brody").setValue(1);
 
 
-        Button b = findViewById(R.id.button3);
-        b.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, Brody.class);
-                startActivity(intent);
-            }
-        });
+
 
         Button signout = findViewById(R.id.button6);
-        b.setOnClickListener(new View.OnClickListener() {
+        signout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 auth.signOut();
@@ -62,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
 
         //get to the test activity
         Button testImageUploadButton = findViewById(R.id.test_image_upload_button);
-        b.setOnClickListener(new View.OnClickListener() {
+        testImageUploadButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, TestImageUpload.class);
@@ -93,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent levering_activity = new Intent(getApplicationContext(), FFC.class);
                 startActivity(levering_activity);
             }
-        }); 
+        });
 
     }
 }

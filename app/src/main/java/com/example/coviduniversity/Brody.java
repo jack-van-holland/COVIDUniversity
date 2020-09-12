@@ -52,8 +52,8 @@ public class Brody extends AppCompatActivity {
 
     }
 
-    protected void onStop() {
-        super.onStop();
+    protected void onDestroy() {
+        super.onDestroy();
         final int[] curr = new int[1];
 
         auth = FirebaseAuth.getInstance();
@@ -63,6 +63,7 @@ public class Brody extends AppCompatActivity {
         user = auth.getCurrentUser();
 
         dbref.child("brody").child(user.getUid()).removeValue();
+        dbref.child("brody").setValue(1);
 
     }
 }
