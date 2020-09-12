@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -16,8 +17,11 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -38,18 +42,64 @@ public class MainActivity extends AppCompatActivity {
         dbref = dbase.getReference();
         user = auth.getCurrentUser();
 
-        dbref.child("brody").setValue(1);
+        dbref.child("brody").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                TextView brodyNum = findViewById(R.id.textView2);
+                long num = dataSnapshot.getChildrenCount();
+                brodyNum.setText(String.valueOf(num) + " students active");
+            }
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
-        Button b = findViewById(R.id.button3);
-        b.setOnClickListener(new View.OnClickListener() {
+            }
+        });
+
+        Button signout = findViewById(R.id.button6);
+        signout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, Brody.class);
+                auth.signOut();
+                Intent intent = new Intent(MainActivity.this, Landing.class);
                 startActivity(intent);
             }
         });
 
+        //get to the test activity
+        Button testImageUploadButton = findViewById(R.id.test_image_upload_button);
+        testImageUploadButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, TestImageUpload.class);
+                startActivity(intent);
+            }
+        });
+
+        //onclick method for the three bubbles
+        findViewById(R.id.main_brody_bubble).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent brody_activity = new Intent(getApplicationContext(), Brody.class);
+                startActivity(brody_activity);
+            }
+        });
+
+        findViewById(R.id.main_gym_bubble).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent gym_activity = new Intent(getApplicationContext(), Gym.class);
+                startActivity(gym_activity);
+            }
+        });
+
+        findViewById(R.id.main_levering_bubble).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent levering_activity = new Intent(getApplicationContext(), FFC.class);
+                startActivity(levering_activity);
+            }
+        });
 
     }
 }
