@@ -32,6 +32,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        auth = FirebaseAuth.getInstance();
+
+        dbase = FirebaseDatabase.getInstance();
+        dbref = dbase.getReference();
+        user = auth.getCurrentUser();
+
+        dbref.child("brody").setValue(1);
+
+
         Button b = findViewById(R.id.button3);
         b.setOnClickListener(new View.OnClickListener() {
             @Override
