@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
@@ -18,6 +19,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
@@ -50,24 +52,38 @@ public class TestImageUpload extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 FileUploader();
+                Intent intent = new Intent(TestImageUpload.this, MainActivity.class);
+                startActivity(intent);
             }
         });
     }
 
     private void FileUploader() {
+        final ProgressDialog pd = new ProgressDialog(this);
+        pd.setTitle("Uploading...");
+        pd.show();
         StorageReference storageRefFile = storageRefRoot.child("images/"+System.currentTimeMillis()+"."+getExtension(imguri));
         storageRefFile.putFile(imguri)
                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        pd.dismiss();
                         Snackbar.make(findViewById(android.R.id.content), "Image Uploaded", Snackbar.LENGTH_LONG).show();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception exception) {
+                        pd.dismiss();
                         Toast.makeText(getApplicationContext(), "Failed to Upload", Toast.LENGTH_LONG).show();
                     }
+                }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                        double progressPercent = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount());
+                        pd.setMessage((int) progressPercent + "%");
+                    }
+
                 });
     }
 
