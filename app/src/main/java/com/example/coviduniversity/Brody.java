@@ -37,21 +37,7 @@ public class Brody extends AppCompatActivity {
 
         final int[] curr = new int[1];
 
-        dbref.child("brody").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Integer j = dataSnapshot.getValue(Integer.class);
-                if (j == null) {
-                    curr[0] = 0;
-                } else {
-                    curr[0] = j;
-                }
-                dbref.child("brody").setValue(curr[0] + 1);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) { }
-        });
+        dbref.child("brody").child(user.getUid()).setValue(1);
 
     }
 
@@ -65,21 +51,7 @@ public class Brody extends AppCompatActivity {
         dbref = dbase.getReference();
         user = auth.getCurrentUser();
 
-        dbref.child("brody").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Integer j = dataSnapshot.getValue(Integer.class);
-                if (j == null) {
-                    curr[0] = 0;
-                } else {
-                    curr[0] = j;
-                }
-                dbref.child("brody").setValue(curr[0] - 1);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) { }
-        });
+        dbref.child("brody").child(user.getUid()).removeValue();
 
     }
 }
