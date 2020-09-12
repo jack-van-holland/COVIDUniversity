@@ -7,18 +7,34 @@
     tools:context=".TestImageUpload">
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/button_ch"
         android:layout_width="143dp"
         android:layout_height="61dp"
         android:text="Button"
-        tools:layout_editor_absoluteX="35dp"
-        tools:layout_editor_absoluteY="34dp" />
+        app:layout_constraintBottom_toTopOf="@+id/image_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.478" />
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="344dp"
-        android:layout_height="331dp"
-        tools:layout_editor_absoluteX="35dp"
-        tools:layout_editor_absoluteY="175dp"
+        android:id="@+id/image_view"
+        android:layout_width="363dp"
+        android:layout_height="334dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.498"
         tools:srcCompat="@tools:sample/avatars" />
+
+    <Button
+        android:id="@+id/button_up"
+        android:layout_width="152dp"
+        android:layout_height="64dp"
+        android:text="Button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/image_view" />
 </androidx.constraintlayout.widget.ConstraintLayout>

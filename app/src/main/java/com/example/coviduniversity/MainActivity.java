@@ -50,7 +50,18 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Button testImageUploadButton = findViewById(R.id.button3);
+        Button signout = findViewById(R.id.button6);
+        b.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                auth.signOut();
+                Intent intent = new Intent(MainActivity.this, Landing.class);
+                startActivity(intent);
+            }
+        });
+
+        //get to the test activity
+        Button testImageUploadButton = findViewById(R.id.test_image_upload_button);
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -82,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent levering_activity = new Intent(getApplicationContext(), FFC.class);
                 startActivity(levering_activity);
             }
-        });
+        }); 
 
     }
 }
