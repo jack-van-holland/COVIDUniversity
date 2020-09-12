@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button b = findViewById(R.id.button2);
+        Button b = findViewById(R.id.button3);
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
