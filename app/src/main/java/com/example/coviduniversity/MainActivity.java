@@ -59,6 +59,30 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //onclick method for the three bubbles
+        findViewById(R.id.main_brody_bubble).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent brody_activity = new Intent(getApplicationContext(), Brody.class);
+                startActivity(brody_activity);
+            }
+        });
+
+        findViewById(R.id.main_gym_bubble).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent gym_activity = new Intent(getApplicationContext(), Gym.class);
+                startActivity(gym_activity);
+            }
+        });
+
+        findViewById(R.id.main_levering_bubble).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent levering_activity = new Intent(getApplicationContext(), FFC.class);
+                startActivity(levering_activity);
+            }
+        });
 
     }
 }
