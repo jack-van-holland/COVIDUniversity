@@ -33,7 +33,7 @@ public class SignUp extends AppCompatActivity {
 
         final TextView nameBox = findViewById(R.id.signup_name);
 
-        final TextView emailBox = findViewById(R.id.signup_password);
+        final TextView emailBox = findViewById(R.id.sign_up_email);
 
         final TextView passwordBox = findViewById(R.id.signup_password);
 
