@@ -4,7 +4,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -38,6 +40,15 @@ public class Brody extends AppCompatActivity {
         final int[] curr = new int[1];
 
         dbref.child("brody").child(user.getUid()).setValue(1);
+
+        //set onclick listener for the back to map button
+        findViewById(R.id.brody_back_to_map).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent back_to_map = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(back_to_map);
+            }
+        });
 
     }
 
