@@ -6,4 +6,19 @@
     android:layout_height="match_parent"
     tools:context=".TestImageUpload">
 
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="143dp"
+        android:layout_height="61dp"
+        android:text="Button"
+        tools:layout_editor_absoluteX="35dp"
+        tools:layout_editor_absoluteY="34dp" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="344dp"
+        android:layout_height="331dp"
+        tools:layout_editor_absoluteX="35dp"
+        tools:layout_editor_absoluteY="175dp"
+        tools:srcCompat="@tools:sample/avatars" />
 </androidx.constraintlayout.widget.ConstraintLayout>
