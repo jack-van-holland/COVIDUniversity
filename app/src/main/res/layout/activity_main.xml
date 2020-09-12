@@ -7,18 +7,6 @@
     android:background="@drawable/campus_map"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:text="Button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.023" />
-
     <ImageView
         android:id="@+id/main_brody_bubble"
         android:layout_width="50dp"
@@ -78,5 +66,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button6" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="21dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="@+id/main_brody_bubble"
+        app:layout_constraintStart_toStartOf="@+id/main_brody_bubble"
+        app:layout_constraintTop_toBottomOf="@+id/main_brody_bubble" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
