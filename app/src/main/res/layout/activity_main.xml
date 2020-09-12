@@ -8,10 +8,11 @@
 
     <ImageView
         android:id="@+id/main_background"
-        android:layout_width="401dp"
-        android:layout_height="732dp"
+        android:layout_width="405dp"
+        android:layout_height="602dp"
         android:layout_marginTop="4dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/background_main" />
@@ -20,20 +21,11 @@
         android:id="@+id/pinpoint_brody"
         android:layout_width="31dp"
         android:layout_height="25dp"
-        android:layout_marginTop="256dp"
+        android:layout_marginTop="228dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.471"
+        app:layout_constraintHorizontal_bias="0.452"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/pinpoint" />
 
-    <ImageView
-        android:id="@+id/pinpoint_rec"
-        android:layout_width="31dp"
-        android:layout_height="45dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.71"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/pinpoint"
-        tools:layout_editor_absoluteY="643dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
