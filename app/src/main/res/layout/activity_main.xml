@@ -8,14 +8,15 @@
 
     <ImageView
         android:id="@+id/main_background"
-        android:layout_width="405dp"
+        android:layout_width="520dp"
         android:layout_height="602dp"
-        android:layout_marginTop="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.489"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/background_main" />
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/campus_map" />
 
     <ImageView
         android:id="@+id/pinpoint_brody"
