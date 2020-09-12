@@ -3,7 +3,11 @@ package com.example.coviduniversity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -25,39 +29,57 @@ public class SignUp extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
-        String email = "ihavecovid@jhu.edu";
-        String pwd = "mothermaidenname";
+
+        final TextView nameBox = findViewById(R.id.signup_name);
+
+        final TextView emailBox = findViewById(R.id.signup_password);
+
+        final TextView passwordBox = findViewById(R.id.signup_password);
+
+        Button submit = findViewById(R.id.button);
+
         auth = FirebaseAuth.getInstance();
 
         dbase = FirebaseDatabase.getInstance();
         dbref = dbase.getReference();
         user = auth.getCurrentUser();
-        auth.createUserWithEmailAndPassword(email, pwd)
+
+        final String[] info = new String[3];
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                info[0] = emailBox.getText().toString();
+                info[1] = passwordBox.getText().toString();
+                info[2] = nameBox.getText().toString();
+            }
+        });
+
+        auth.createUserWithEmailAndPassword(info[0], info[1])
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
 
                         if (task.isSuccessful()) {
-                            onAuthSuccess(task.getResult().getUser());
+                            onAuthSuccess(task.getResult().getUser(), info[3]);
                         } else {
                             Toast.makeText(SignUp.this, "Sign Up Failed", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
     }
-    private void onAuthSuccess(FirebaseUser user) {
+    private void onAuthSuccess(FirebaseUser user, String name) {
         // Add name field to user
-        UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
-                .setDisplayName("john" + " " + "doe").build();
-        user.updateProfile(profileUpdates);
+        UserProfileChangeRequest nameChange = new UserProfileChangeRequest.Builder()
+                .setDisplayName(name).build();
+        user.updateProfile(nameChange);
 
         // Sign out so user can log in with created information
         auth.signOut();
 
-        /*// Go to landing page to log in with created account
-        startActivity(new Intent(SignUp.this, WelcomeLanding.class));
+        //go to login
+        startActivity(new Intent(SignUp.this, Login.class));
         finish();
         String success = "Successfully signed up!";
         Toast.makeText(getApplicationContext(), success, Toast.LENGTH_SHORT).show();
-    */}
+    }
 }
