@@ -1,4 +1,68 @@
 <resources>
     <string name="app_name">COVIDUniversity</string>
     <string name="login_hint">Please click the photo to change picture of yours.</string>
+    <string-array name="majors_array">
+        <item>Major</item>
+        <item>Africana Studies</item>
+        <item>Anthropology</item>
+        <item>Applied Mathematics and Statistics</item>
+        <item>Archaeology</item>
+        <item>Behavioral Biology</item>
+        <item>Biology</item>
+        <item>Biomedical Engineering</item>
+        <item>Biophysics</item>
+        <item>Chemical and Biomolecular Engineering</item>
+        <item>Chemistry</item>
+        <item>Civil Engineering</item>
+        <item>Classics</item>
+        <item>Cognitive Science</item>
+        <item>Computer Engineering</item>
+        <item>Computer Science</item>
+        <item>Earth and Planetary Sciences</item>
+        <item>East Asian Studies</item>
+        <item>Economics</item>
+        <item>Electrical Engineering</item>
+        <item>Engineering Mechanics</item>
+        <item>English</item>
+        <item>Environmental Engineering</item>
+        <item>Environmental Science</item>
+        <item>Environmental Studies</item>
+        <item>Film and Media Studies</item>
+        <item>French</item>
+        <item>General Engineering</item>
+        <item>German</item>
+        <item>History</item>
+        <item>History of Art</item>
+        <item>History of Science and Technology</item>
+        <item>Interdisciplinary Studies</item>
+        <item>International Studies</item>
+        <item>Italian</item>
+        <item>Materials Science and Engineering</item>
+        <item>Mathematics</item>
+        <item>Mechanical Engineering</item>
+        <item>Medicine, Science and the Humanities</item>
+        <item>Molecular and Cellular Biology</item>
+        <item>Natural Sciences</item>
+        <item>Near Eastern Studies</item>
+        <item>Neuroscience</item>
+        <item>Philosophy</item>
+        <item>Physics</item>
+        <item>Political Science</item>
+        <item>Psychology</item>
+        <item>Public Health Studies</item>
+        <item>Romance Languages</item>
+        <item>Sociology</item>
+        <item>Spanish</item>
+        <item>Writing Seminars</item>
+    </string-array>
+    <string-array name="years_array">
+        <item>Year</item>
+        <item>Freshman</item>
+        <item>Sophomore</item>
+        <item>Junior</item>
+        <item>Senior</item>
+        <item>Master\'s Student</item>
+        <item>PHD Student</item>
+        <item>Professor</item>
+    </string-array>
 </resources>
