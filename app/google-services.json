@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "550108530583",
+    "firebase_url": "https://coviduniversity-1b669.firebaseio.com",
+    "project_id": "coviduniversity-1b669",
+    "storage_bucket": "coviduniversity-1b669.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:550108530583:android:5e659b75f6d5a5a27da6d2",
+        "android_client_info": {
+          "package_name": "com.example.coviduniversity"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "550108530583-lepou5r7afnqj4bj21lj4vscbtdsf3od.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBRzkE5uqdvJimjG7DkAh6e-f7dnNtRfJ0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "550108530583-lepou5r7afnqj4bj21lj4vscbtdsf3od.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
