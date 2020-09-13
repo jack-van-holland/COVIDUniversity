@@ -17,7 +17,9 @@
             android:parentActivityName=".Brody"
             android:windowSoftInputMode="stateVisible|adjustPan"></activity>
         <activity android:name=".LeveringChat"
-            android:windowSoftInputMode="stateVisible|adjustPan"></activity>
+            android:windowSoftInputMode="stateVisible|adjustPan"
+        android:parentActivityName=".FFC"></activity>
+
 
         <activity android:name=".Landing">
             <intent-filter>
@@ -26,8 +28,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".FFC" />
-        <activity android:name=".FFCMenu" />
+        <activity android:name=".FFC"
+            android:parentActivityName=".MainActivity"
+            />
+        <activity android:name=".FFCMenu"
+            android:parentActivityName=".FFC"/>
         <activity
             android:name=".Brody"
             android:parentActivityName=".MainActivity"
@@ -42,7 +47,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ImagesActivity" />
+        <activity android:name=".ImagesActivity"
+            android:parentActivityName=".FFC"/>
     </application>
 
 </manifest>
