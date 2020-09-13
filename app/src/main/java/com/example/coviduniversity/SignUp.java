@@ -1,11 +1,13 @@
 package com.example.coviduniversity;
 
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.webkit.MimeTypeMap;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -142,7 +144,7 @@ public class SignUp extends AppCompatActivity {
         String profilePicStorageName;
         if (profilePicUri != null) {
             //did select a pic
-            profilePicStorageName = "pfp_for_" + user.getUid();
+            profilePicStorageName = "pfp_for_" + user.getUid() + "." + getFileExtension(Uri.parse(profilePicUri));
             StorageReference profilePicStorageLocation = rootStorageRef.child("profilePics/" + profilePicStorageName);
             profilePicStorageLocation.putFile(Uri.parse(profilePicUri));
         } else {
@@ -186,5 +188,10 @@ public class SignUp extends AppCompatActivity {
         }
     }
 
+    private String getFileExtension(Uri uri) {
+        ContentResolver cR = getContentResolver();
+        MimeTypeMap mime = MimeTypeMap.getSingleton();
+        return mime.getExtensionFromMimeType(cR.getType(uri));
+    }
 
 }
