@@ -7,8 +7,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
@@ -17,7 +20,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
@@ -30,7 +33,7 @@ public class TestImageUpload extends AppCompatActivity {
     Button choose, upload;
     ImageView img;
     StorageReference storageRefRoot;
-    public Uri imguri;
+    Uri imguri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +43,16 @@ public class TestImageUpload extends AppCompatActivity {
         upload = (Button)findViewById(R.id.button_up);
         img = (ImageView)findViewById(R.id.image_view);
         storageRefRoot = FirebaseStorage.getInstance().getReference();
+
+
+        StorageReference loc = storageRefRoot.child("profilePics/" + "pfp_for_y6paytCh4PaExeYIIow0GHhfNfj1");
+        loc.getBytes(2000*2000).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+            @Override
+            public void onSuccess(byte[] bytes) {
+                Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                img.setImageBitmap(bitmap);
+            }
+        });
 
         choose.setOnClickListener(new View.OnClickListener ()  {
             @Override
@@ -68,7 +81,6 @@ public class TestImageUpload extends AppCompatActivity {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                         pd.dismiss();
-                        Snackbar.make(findViewById(android.R.id.content), "Image Uploaded", Snackbar.LENGTH_LONG).show();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
