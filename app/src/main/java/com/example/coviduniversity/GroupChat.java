@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -60,6 +61,8 @@ public class GroupChat extends AppCompatActivity {
         chatRoom.setGravity(Gravity.BOTTOM);
         update(room, chatRoom);
         Button sendButton = findViewById(R.id.sendText);
+        EditText textMessage = findViewById(R.id.messageText);
+        //textMessage.requestFocus();
 
 
         sendButton.setOnClickListener(new View.OnClickListener() {
@@ -124,6 +127,7 @@ public class GroupChat extends AppCompatActivity {
 
     public void updateChat(LinearLayout chatRoom) {
         chatRoom.removeAllViews();
+        chatRoom.setPadding(50, 50, 50, 200);
         for (Message m : chat) {
             TextView t = new TextView(this);
             if (m.getId().equals(user.getUid())) {
@@ -132,8 +136,19 @@ public class GroupChat extends AppCompatActivity {
                 t.setBackgroundResource(R.drawable.recieved_text_bubble);
             }
             t.setText(m.getText());
+            t.setPadding(50,25,50,25);
             chatRoom.addView(t);
+            TextView dummy = new TextView(this);
+            dummy.setPadding(0, 10, 0, 10);
+            chatRoom.addView(dummy);
         }
+        ScrollView s = (ScrollView)chatRoom.getParent();
+        s.post(new Runnable() {
+            @Override
+            public void run() {
+                s.scrollTo(0, s.getBottom());
+            }
+        });
     }
 
 
