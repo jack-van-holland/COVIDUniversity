@@ -16,7 +16,8 @@
             android:name=".GroupChat"
             android:parentActivityName=".Brody"
             android:windowSoftInputMode="stateVisible|adjustPan"></activity>
-        <activity android:name=".LeveringChat"></activity>
+        <activity android:name=".LeveringChat"
+            android:windowSoftInputMode="stateVisible|adjustPan"></activity>
 
         <activity android:name=".Landing">
             <intent-filter>
