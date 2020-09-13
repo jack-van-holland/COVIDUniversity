@@ -54,7 +54,7 @@ public class GroupChat extends AppCompatActivity {
         //get the room number
         room = getIntent().getExtras().getString("room");
 
-        dbref.child("brody_rooms").child(room).child("roster").child(user.getUid()).setValue(1);
+        dbref.child("brody_rooms").child(room).child("roster").child(user.getUid()).setValue(user.getUid());
 
         LinearLayout chatRoom = findViewById(R.id.chat_room);
         chatRoom.setOrientation(LinearLayout.VERTICAL);
@@ -128,18 +128,33 @@ public class GroupChat extends AppCompatActivity {
     public void updateChat(LinearLayout chatRoom) {
         chatRoom.removeAllViews();
         chatRoom.setPadding(50, 50, 50, 200);
-        for (Message m : chat) {
+        TextView dummy = new TextView(this);
+        dummy.setPadding(0, 5, 0, 5);
+        chatRoom.addView(dummy);
+        dummy = new TextView(this);
+        dummy.setPadding(0, 5, 0, 5);
+        chatRoom.addView(dummy);
+        dummy = new TextView(this);
+        dummy.setPadding(0, 5, 0, 5);
+        chatRoom.addView(dummy);
+        for (int i = 0; i < chat.size(); i++) {
+            Message m = chat.get(i);
             TextView t = new TextView(this);
             if (m.getId().equals(user.getUid())) {
                 t.setBackgroundResource(R.drawable.sent_text_bubble);
             } else {
+                TextView name = new TextView(this);
+                Date d = new Date(m.getTime());
+                name.setText(m.getName() + " " + d.toString());
+                name.setPadding(10, 0, 10, 10);
+                chatRoom.addView(name);
                 t.setBackgroundResource(R.drawable.recieved_text_bubble);
             }
             t.setText(m.getText());
-            t.setPadding(50,25,50,25);
+            t.setPadding(50,5,50,25);
             chatRoom.addView(t);
-            TextView dummy = new TextView(this);
-            dummy.setPadding(0, 10, 0, 10);
+            dummy = new TextView(this);
+            dummy.setPadding(0, 5, 0, 5);
             chatRoom.addView(dummy);
         }
         ScrollView s = (ScrollView)chatRoom.getParent();
