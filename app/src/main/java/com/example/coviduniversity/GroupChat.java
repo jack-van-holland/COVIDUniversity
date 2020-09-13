@@ -54,7 +54,7 @@ public class GroupChat extends AppCompatActivity {
         //get the room number
         room = getIntent().getExtras().getString("room");
 
-        dbref.child("brody_rooms").child(room).child("roster").child(user.getUid()).setValue(1);
+        dbref.child("brody_rooms").child(room).child("roster").child(user.getUid()).setValue(user.getUid());
 
         LinearLayout chatRoom = findViewById(R.id.chat_room);
         chatRoom.setOrientation(LinearLayout.VERTICAL);
