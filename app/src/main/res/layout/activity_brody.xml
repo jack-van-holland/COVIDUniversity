@@ -11,7 +11,7 @@
         android:id="@+id/brody_back_to_map"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:text="Back to map"
@@ -20,13 +20,14 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/brody_table_list"
-        android:layout_width="407dp"
-        android:layout_height="540dp"
-        android:layout_marginTop="110dp"
+        android:layout_width="414dp"
+        android:layout_height="601dp"
+        android:layout_marginTop="69dp"
         android:layout_marginBottom="1dp"
-        android:background="#72F4ECEC"
+        android:background="#C1F4ECEC"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/brody_back_to_map" />
 </androidx.constraintlayout.widget.ConstraintLayout>
