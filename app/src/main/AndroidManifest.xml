@@ -9,10 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".GroupChat"
-            android:windowSoftInputMode="stateVisible|adjustPan"
-            android:parentActivityName=".Brody">
-        </activity>
+        <activity android:name=".statusPage"
+            android:parentActivityName=".Brody"></activity>
+        <activity
+            android:name=".GroupChat"
+            android:parentActivityName=".Brody"
+            android:windowSoftInputMode="stateVisible|adjustPan"></activity>
         <activity android:name=".Landing">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,11 +24,10 @@
         </activity>
         <activity android:name=".FFC" />
         <activity android:name=".FFCMenu" />
-
         <activity
             android:name=".Brody"
-            android:windowSoftInputMode="adjustResize"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".MainActivity"
+            android:windowSoftInputMode="adjustResize" />
         <activity android:name=".Gym" />
         <activity android:name=".SignUp" />
         <activity android:name=".Login" />
@@ -38,7 +39,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ImagesActivity"></activity>
+        <activity android:name=".ImagesActivity" />
     </application>
 
 </manifest>
