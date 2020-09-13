@@ -1,6 +1,7 @@
 package com.example.coviduniversity;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -33,9 +35,12 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
     public void onBindViewHolder(ImageViewHolder holder, int position) {
         Upload uploadCurrent = mUploads.get(position);
         holder.textViewName.setText(uploadCurrent.getName());
+        Log.d("!!!!!", uploadCurrent.getPicName());
+        Log.d("!!!!!", "ds");
+
         Picasso.with(mContext)
-                .load(uploadCurrent.getImageUrl())
-                //.placeholder(R.mipmap.ic_launcher)
+                .load(uploadCurrent.getPicName())
+                .placeholder(R.mipmap.ic_launcher)
                 .fit()
                 .centerCrop()
                 .into(holder.imageView);
