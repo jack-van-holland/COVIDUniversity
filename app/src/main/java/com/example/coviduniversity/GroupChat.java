@@ -31,6 +31,7 @@ public class GroupChat extends AppCompatActivity {
     private DatabaseReference dbref;
     private FirebaseAuth auth;
     private FirebaseUser user;
+    private String room;
 
     List<Message> chat;
 
@@ -48,16 +49,16 @@ public class GroupChat extends AppCompatActivity {
         user = auth.getCurrentUser();
 
 
-        //get the room number
-        String room = getIntent().getExtras().getString("room");
 
-        update(room);
+        //get the room number
+        room = getIntent().getExtras().getString("room");
+
+        dbref.child("brody_rooms").child(room).child("roster").child(user.getUid()).setValue(1);
 
         LinearLayout chatRoom = findViewById(R.id.chat_room);
         chatRoom.setOrientation(LinearLayout.VERTICAL);
         chatRoom.setGravity(Gravity.BOTTOM);
-
-        updateChat(chatRoom);
+        update(room, chatRoom);
         Button sendButton = findViewById(R.id.sendText);
 
 
@@ -70,19 +71,33 @@ public class GroupChat extends AppCompatActivity {
                 String id = user.getUid();
                 Message m = new Message(text, name, id, new Date().getTime());
 
-                dbref.child("brody_rooms").child(room).push().setValue(m);
+                dbref.child("brody_rooms").child(room).child("chats").push().setValue(m);
                 textMessage.setText("");
             }
         });
     }
 
+    protected void onDestroy() {
+        super.onDestroy();
 
-    public void update(String room) {
-        dbref.child("brody_rooms").child(room).addChildEventListener(new ChildEventListener() {
+        auth = FirebaseAuth.getInstance();
+
+        dbase = FirebaseDatabase.getInstance();
+        dbref = dbase.getReference();
+        user = auth.getCurrentUser();
+
+        dbref.child("brody_rooms").child(room).child("roster").child(user.getUid()).removeValue();
+        dbref.child("brody_rooms").child(room).child("roster").setValue(1);
+
+    }
+
+    public void update(String room, LinearLayout l) {
+        dbref.child("brody_rooms").child(room).child("chats").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 chat.add(dataSnapshot.getValue(Message.class));
                 Collections.sort(chat);
+                updateChat(l);
             }
 
             @Override
@@ -108,8 +123,14 @@ public class GroupChat extends AppCompatActivity {
     }
 
     public void updateChat(LinearLayout chatRoom) {
+        chatRoom.removeAllViews();
         for (Message m : chat) {
             TextView t = new TextView(this);
+            if (m.getId().equals(user.getUid())) {
+                t.setBackgroundResource(R.drawable.sent_text_bubble);
+            } else {
+                t.setBackgroundResource(R.drawable.recieved_text_bubble);
+            }
             t.setText(m.getText());
             chatRoom.addView(t);
         }
