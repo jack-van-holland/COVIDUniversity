@@ -84,6 +84,7 @@ public class Brody extends AppCompatActivity {
 
     public void buildRecyclerView() {
         existing_table = findViewById(R.id.brody_table_list);
+        existing_table.addItemDecoration(new DividerItemDecoration(existing_table.getContext(), DividerItemDecoration.VERTICAL));
         existing_table.setHasFixedSize(true);
         table_layoutManager = new LinearLayoutManager(this);
         table_adapter = new List_adapter(table_list);
