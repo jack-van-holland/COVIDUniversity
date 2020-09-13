@@ -84,7 +84,7 @@ public class FFCMenu extends AppCompatActivity {
         mTextViewShowUploads.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                openImagesActivity();
             }
         });
 
@@ -166,6 +166,11 @@ public class FFCMenu extends AppCompatActivity {
             Toast.makeText(getApplicationContext(),"Failed",Toast.LENGTH_SHORT).show();
         }
 
+    }
+
+    private void openImagesActivity() {
+        Intent intent = new Intent(this, ImagesActivity.class);
+        startActivity(intent);
     }
 
 }
