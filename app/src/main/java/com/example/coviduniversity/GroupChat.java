@@ -132,6 +132,7 @@ public class GroupChat extends AppCompatActivity {
                 t.setBackgroundResource(R.drawable.recieved_text_bubble);
             }
             t.setText(m.getText());
+            t.setPadding(5,10,5,10);
             chatRoom.addView(t);
         }
     }
