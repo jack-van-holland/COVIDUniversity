@@ -76,11 +76,10 @@ public class SignUp extends AppCompatActivity {
             }
         });
         rootStorageRef = FirebaseStorage.getInstance().getReference();
-        StorageReference defaultPfp = rootStorageRef.child("profilePics/" + "default_profile_picture.jpg");
+        StorageReference defaultPfp = rootStorageRef.child("profilePics/default_profile_picture.jpg");
         defaultPfp.getBytes(2000*2000).addOnSuccessListener(new OnSuccessListener<byte[]>() {
             @Override
             public void onSuccess(byte[] bytes) {
-                Log.d("!!!!!!", "success");
                 Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
                 profilePic.setImageBitmap(bitmap);
             }
