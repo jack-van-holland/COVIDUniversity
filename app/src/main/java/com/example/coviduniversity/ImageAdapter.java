@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
@@ -36,14 +38,22 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
         Upload uploadCurrent = mUploads.get(position);
         holder.textViewName.setText(uploadCurrent.getName());
         Log.d("!!!!!", uploadCurrent.getPicName());
-        Log.d("!!!!!", "ds");
+        //Log.d("!!!!!", "ds");
 
+        Glide.with(mContext)
+                //.using(new FirebaseImageLoader())
+                .load(uploadCurrent.getPicName())
+                .into(holder.imageView);
+
+        /*
         Picasso.with(mContext)
                 .load(uploadCurrent.getPicName())
                 .placeholder(R.mipmap.ic_launcher)
                 .fit()
                 .centerCrop()
                 .into(holder.imageView);
+
+         */
     }
 
     @Override

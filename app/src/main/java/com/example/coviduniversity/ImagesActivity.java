@@ -17,6 +17,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
@@ -51,8 +52,11 @@ public class ImagesActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                     Upload upload = postSnapshot.getValue(Upload.class);
-                    //StorageReference sr = mDatabaseRef.child(upload.getPicName());
-                    //Log.d("!!!!!", );
+                    StorageReference sr = FirebaseStorage.getInstance().
+                            getReference("uploads").child(upload.getPicName());
+                    Log.d("!!!!!", sr.toString());
+                    upload.setPicName(sr.toString());
+                    //Log.d("!!!!!", sr.getDownloadUrl());
                     //Toast.makeText(ImagesActivity.this, "Working on it", Toast.LENGTH_SHORT).show();
                     mUploads.add(upload);
                 }
