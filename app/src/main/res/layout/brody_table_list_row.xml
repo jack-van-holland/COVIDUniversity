@@ -9,9 +9,10 @@
     <TextView
         android:id="@+id/single_table"
         android:layout_width="403dp"
-        android:layout_height="41dp"
+        android:layout_height="60dp"
         android:layout_marginEnd="4dp"
         android:layout_marginRight="4dp"
+        android:gravity="center"
         android:text="TextView"
         android:textColor="#E91E63"
         android:textSize="24sp"
