@@ -3,6 +3,7 @@ package com.example.coviduniversity;
 
 import android.os.Bundle;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -16,6 +17,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,14 +52,19 @@ public class ImagesActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                     Upload upload = postSnapshot.getValue(Upload.class);
-                    Toast.makeText(ImagesActivity.this, "Working on it", Toast.LENGTH_SHORT).show();
+                    StorageReference sr = FirebaseStorage.getInstance().
+                            getReference("uploads").child(upload.getPicName());
+                    Log.d("!!!!!", sr.toString());
+                    upload.setPicName(sr.toString());
+                    //Log.d("!!!!!", sr.getDownloadUrl());
+                    //Toast.makeText(ImagesActivity.this, "Working on it", Toast.LENGTH_SHORT).show();
                     mUploads.add(upload);
                 }
 
                 mAdapter = new ImageAdapter(ImagesActivity.this, mUploads);
 
                 mRecyclerView.setAdapter(mAdapter);
-                mProgressCircle.setVisibility(View.INVISIBLE);
+                //mProgressCircle.setVisibility(View.INVISIBLE);
             }
 
             @Override

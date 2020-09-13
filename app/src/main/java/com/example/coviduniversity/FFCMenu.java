@@ -124,8 +124,9 @@ public class FFCMenu extends AppCompatActivity {
 
     private void uploadFile() {
         if (mImageUri != null) {
-            StorageReference fileReference = mStorageRef.child(System.currentTimeMillis()
-                    + "." + getFileExtension(mImageUri));
+            String picName = System.currentTimeMillis()
+                    + "." + getFileExtension(mImageUri);
+            StorageReference fileReference = mStorageRef.child(picName);
 
             mUploadTask = fileReference.putFile(mImageUri)
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -142,7 +143,7 @@ public class FFCMenu extends AppCompatActivity {
 
                             Toast.makeText(FFCMenu.this, "Upload successful", Toast.LENGTH_LONG).show();
                             Upload upload = new Upload(mEditTextFileName.getText().toString().trim(),
-                                    taskSnapshot.getMetadata().getReference().getDownloadUrl().toString());
+                                    taskSnapshot.getMetadata().getReference().getDownloadUrl().toString(), picName);
                             String uploadId = mDatabaseRef.push().getKey();
                             mDatabaseRef.child(uploadId).setValue(upload);
                         }
