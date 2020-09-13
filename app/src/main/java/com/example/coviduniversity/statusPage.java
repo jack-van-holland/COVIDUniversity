@@ -3,6 +3,7 @@ package com.example.coviduniversity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
@@ -127,7 +128,20 @@ public class statusPage extends AppCompatActivity {
         for (int i = 0; i < users.size(); i++) {
             for (User u: allUsers) {
                 if (u.getId().equals(users.get(i))) {
-                    if (!u.getId().equals(user.getUid())) {
+                    if (true) {
+                        //profile photo
+                        ImageView pfpView = new ImageView(this);
+                        StorageReference userPfpInStorage = FirebaseStorage.getInstance().getReference().child("profilePics/" + u.getProfilePicStorageName());
+                        userPfpInStorage.getBytes(2000*2000).addOnSuccessListener(new OnSuccessListener<byte[]>(){
+                            @Override
+                            public void onSuccess(byte[] bytes) {
+                                Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                                pfpView.setImageBitmap(bitmap);
+                            }
+                        });
+                        //pfpView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
+                        chatRoom.addView(pfpView);
+                        pfpView.getLayoutParams().height = 200;
                         TextView nameView = new TextView(this);
                         nameView.setText(u.getName());
                         nameView.setPadding(10, 0, 10, 10);
@@ -138,27 +152,10 @@ public class statusPage extends AppCompatActivity {
                         chatRoom.addView(majorView);
                         TextView yearView = new TextView(this);
                         yearView.setText(u.getYear());
-                        yearView.setPadding(10, 0, 10, 10);
+                        yearView.setPadding(10, 0, 10, 40);
                         chatRoom.addView(yearView);
-                        TextView picView = new TextView(this);
-                        picView.setText(u.getProfilePicStorageName());
-                        picView.setPadding(10, 0, 10, 10);
-                        chatRoom.addView(picView);
-                        //profile photo
-                        final ImageView pfpView = new ImageView(this);
-                        chatRoom.addView(pfpView);
-                        StorageReference userPfpInStorage = FirebaseStorage.getInstance().getReference().child("profilePics/" + u.getProfilePicStorageName());
-                        userPfpInStorage.getBytes(2000*2000).addOnSuccessListener(new OnSuccessListener<byte[]>() {
-                            @Override
-                            public void onSuccess(byte[] bytes) {
-                                Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-                                pfpView.setImageBitmap(bitmap);
-                            }
-                        });
+
                     }
-                    dummy = new TextView(this);
-                    dummy.setPadding(0, 5, 0, 5);
-                    chatRoom.addView(dummy);
                 }
             }
         }
