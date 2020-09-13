@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/campus_map"
     tools:context=".MainActivity"
-    android:screenOrientation="landscape">
+    >
 
     <ImageView
         android:id="@+id/main_brody_bubble"
