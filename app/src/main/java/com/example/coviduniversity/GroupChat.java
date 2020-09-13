@@ -128,6 +128,15 @@ public class GroupChat extends AppCompatActivity {
     public void updateChat(LinearLayout chatRoom) {
         chatRoom.removeAllViews();
         chatRoom.setPadding(50, 50, 50, 200);
+        TextView dummy = new TextView(this);
+        dummy.setPadding(0, 5, 0, 5);
+        chatRoom.addView(dummy);
+        dummy = new TextView(this);
+        dummy.setPadding(0, 5, 0, 5);
+        chatRoom.addView(dummy);
+        dummy = new TextView(this);
+        dummy.setPadding(0, 5, 0, 5);
+        chatRoom.addView(dummy);
         for (int i = 0; i < chat.size(); i++) {
             Message m = chat.get(i);
             TextView t = new TextView(this);
@@ -144,7 +153,7 @@ public class GroupChat extends AppCompatActivity {
             t.setText(m.getText());
             t.setPadding(50,5,50,25);
             chatRoom.addView(t);
-            TextView dummy = new TextView(this);
+            dummy = new TextView(this);
             dummy.setPadding(0, 5, 0, 5);
             chatRoom.addView(dummy);
         }
