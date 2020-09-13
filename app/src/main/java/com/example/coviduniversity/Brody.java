@@ -51,7 +51,7 @@ public class Brody extends AppCompatActivity {
 
         final int[] curr = new int[1];
 
-        dbref.child("brody").child(user.getUid()).setValue(1);
+        dbref.child("brody").child(user.getUid()).setValue(user.getUid());
 
         //set onclick listener for the back to map button
         findViewById(R.id.brody_back_to_map).setOnClickListener(new View.OnClickListener() {
