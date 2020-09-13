@@ -13,7 +13,7 @@
         android:layout_marginStart="5dp"
         android:layout_marginLeft="5dp"
         android:layout_marginBottom="36dp"
-        android:text="Button"
+        android:text="Send"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/messageText" />
 
@@ -48,7 +48,7 @@
         android:layout_marginBottom="42dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Type something"
+        android:hint="Type something"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
