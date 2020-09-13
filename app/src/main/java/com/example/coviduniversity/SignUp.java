@@ -75,8 +75,7 @@ public class SignUp extends AppCompatActivity {
                 chooseProfilePic();
             }
         });
-        /*
-        //THIS exact block causes a crash.
+        rootStorageRef = FirebaseStorage.getInstance().getReference();
         StorageReference defaultPfp = rootStorageRef.child("profilePics/" + "default_profile_picture.jpg");
         defaultPfp.getBytes(2000*2000).addOnSuccessListener(new OnSuccessListener<byte[]>() {
             @Override
@@ -86,14 +85,13 @@ public class SignUp extends AppCompatActivity {
                 profilePic.setImageBitmap(bitmap);
             }
         });
-        */
 
 
         auth = FirebaseAuth.getInstance();
         dbase = FirebaseDatabase.getInstance();
         dbref = dbase.getReference();
         user = auth.getCurrentUser();
-        rootStorageRef = FirebaseStorage.getInstance().getReference();
+
 
         final String[] info = new String[6];
         submit.setOnClickListener(new View.OnClickListener() {

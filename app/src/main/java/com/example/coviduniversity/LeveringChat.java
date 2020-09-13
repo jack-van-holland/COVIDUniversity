@@ -26,7 +26,7 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
-public class GroupChat extends AppCompatActivity {
+public class LeveringChat extends AppCompatActivity {
 
     private FirebaseDatabase dbase;
     private DatabaseReference dbref;
@@ -52,14 +52,13 @@ public class GroupChat extends AppCompatActivity {
 
 
         //get the room number
-        room = getIntent().getExtras().getString("room");
 
-        dbref.child("brody_rooms").child(room).child("roster").child(user.getUid()).setValue(user.getUid());
+        dbref.child("levering").child("roster").child(user.getUid()).setValue(1);
 
         LinearLayout chatRoom = findViewById(R.id.chat_room);
         chatRoom.setOrientation(LinearLayout.VERTICAL);
         chatRoom.setGravity(Gravity.BOTTOM);
-        update(room, chatRoom);
+        update(chatRoom);
         Button sendButton = findViewById(R.id.sendText);
         EditText textMessage = findViewById(R.id.messageText);
         //textMessage.requestFocus();
@@ -74,7 +73,7 @@ public class GroupChat extends AppCompatActivity {
                 String id = user.getUid();
                 Message m = new Message(text, name, id, new Date().getTime());
 
-                dbref.child("brody_rooms").child(room).child("chats").push().setValue(m);
+                dbref.child("levering").child("chats").push().setValue(m);
                 textMessage.setText("");
             }
         });
@@ -89,13 +88,13 @@ public class GroupChat extends AppCompatActivity {
         dbref = dbase.getReference();
         user = auth.getCurrentUser();
 
-        dbref.child("brody_rooms").child(room).child("roster").child(user.getUid()).removeValue();
-        dbref.child("brody_rooms").child(room).child("roster").setValue(1);
+        dbref.child("levering").child("roster").child(user.getUid()).removeValue();
+        dbref.child("levering").child("roster").setValue(1);
 
     }
 
-    public void update(String room, LinearLayout l) {
-        dbref.child("brody_rooms").child(room).child("chats").addChildEventListener(new ChildEventListener() {
+    public void update(LinearLayout l) {
+        dbref.child("levering").child("chats").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 chat.add(dataSnapshot.getValue(Message.class));
@@ -128,33 +127,18 @@ public class GroupChat extends AppCompatActivity {
     public void updateChat(LinearLayout chatRoom) {
         chatRoom.removeAllViews();
         chatRoom.setPadding(50, 50, 50, 200);
-        TextView dummy = new TextView(this);
-        dummy.setPadding(0, 5, 0, 5);
-        chatRoom.addView(dummy);
-        dummy = new TextView(this);
-        dummy.setPadding(0, 5, 0, 5);
-        chatRoom.addView(dummy);
-        dummy = new TextView(this);
-        dummy.setPadding(0, 5, 0, 5);
-        chatRoom.addView(dummy);
-        for (int i = 0; i < chat.size(); i++) {
-            Message m = chat.get(i);
+        for (Message m : chat) {
             TextView t = new TextView(this);
             if (m.getId().equals(user.getUid())) {
                 t.setBackgroundResource(R.drawable.sent_text_bubble);
             } else {
-                TextView name = new TextView(this);
-                Date d = new Date(m.getTime());
-                name.setText(m.getName() + " " + d.toString());
-                name.setPadding(10, 0, 10, 10);
-                chatRoom.addView(name);
                 t.setBackgroundResource(R.drawable.recieved_text_bubble);
             }
             t.setText(m.getText());
-            t.setPadding(50,5,50,25);
+            t.setPadding(50,25,50,25);
             chatRoom.addView(t);
-            dummy = new TextView(this);
-            dummy.setPadding(0, 5, 0, 5);
+            TextView dummy = new TextView(this);
+            dummy.setPadding(0, 10, 0, 10);
             chatRoom.addView(dummy);
         }
         ScrollView s = (ScrollView)chatRoom.getParent();

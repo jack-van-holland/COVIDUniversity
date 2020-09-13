@@ -27,5 +27,12 @@
         android:text="Today's special"
         android:textSize="16sp" />
 
+    <Button
+        android:id="@+id/button_to_levering_chat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="Come and chat about your meals"
+        android:textSize="20sp"/>
 
 </RelativeLayout>

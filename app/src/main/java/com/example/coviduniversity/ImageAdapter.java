@@ -13,8 +13,7 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
-import com.firebase.ui.storage.images.FirebaseImageLoader;
+
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -42,7 +41,12 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
     @Override
     public void onBindViewHolder(ImageViewHolder holder, int position) {
         Upload uploadCurrent = mUploads.get(position);
-        holder.textViewName.setText(uploadCurrent.getName());
+        if (uploadCurrent.getUserName() == null) {
+            holder.textViewName.setText(uploadCurrent.getName() + " by a blue jay");
+        } else {
+            holder.textViewName.setText(uploadCurrent.getName() + " by "
+                    + uploadCurrent.getUserName());
+        }
 
         StorageReference sr = FirebaseStorage.getInstance()
                 .getReference("uploads")
