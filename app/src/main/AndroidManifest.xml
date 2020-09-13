@@ -17,7 +17,9 @@
             android:parentActivityName=".Brody"
             android:windowSoftInputMode="stateVisible|adjustPan"></activity>
         <activity android:name=".LeveringChat"
-            android:parentActivityName=".FFC"></activity>
+            android:windowSoftInputMode="stateVisible|adjustPan"
+        android:parentActivityName=".FFC"></activity>
+
 
         <activity android:name=".Landing">
             <intent-filter>
