@@ -61,16 +61,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //get to the test activity
-        Button testImageUploadButton = findViewById(R.id.test_image_upload_button);
-        testImageUploadButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, TestImageUpload.class);
-                startActivity(intent);
-            }
-        });
-
         //onclick method for the three bubbles
         findViewById(R.id.main_brody_bubble).setOnClickListener(new View.OnClickListener() {
             @Override

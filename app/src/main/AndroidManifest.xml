@@ -34,7 +34,6 @@
         <activity android:name=".Gym" />
         <activity android:name=".SignUp" />
         <activity android:name=".Login" />
-        <activity android:name=".TestImageUpload" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
