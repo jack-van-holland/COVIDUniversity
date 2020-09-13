@@ -1,6 +1,9 @@
 package com.example.coviduniversity;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,9 +15,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.firebase.ui.storage.images.FirebaseImageLoader;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
+import java.util.BitSet;
 import java.util.List;
 
 
@@ -37,23 +43,22 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
     public void onBindViewHolder(ImageViewHolder holder, int position) {
         Upload uploadCurrent = mUploads.get(position);
         holder.textViewName.setText(uploadCurrent.getName());
-        Log.d("!!!!!", uploadCurrent.getPicName());
-        //Log.d("!!!!!", "ds");
 
-        Glide.with(mContext)
-                //.using(new FirebaseImageLoader())
-                .load(uploadCurrent.getPicName())
-                .into(holder.imageView);
+        StorageReference sr = FirebaseStorage.getInstance()
+                .getReference("uploads")
+                .child(uploadCurrent.getPicName());
 
-        /*
-        Picasso.with(mContext)
-                .load(uploadCurrent.getPicName())
-                .placeholder(R.mipmap.ic_launcher)
-                .fit()
-                .centerCrop()
-                .into(holder.imageView);
-
-         */
+        sr.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                Picasso.with(mContext)
+                        .load(uri)
+                        .placeholder(R.mipmap.ic_launcher)
+                        .fit()
+                        .centerCrop()
+                        .into(holder.imageView);
+            }
+        });
     }
 
     @Override
