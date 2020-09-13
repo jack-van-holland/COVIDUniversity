@@ -54,7 +54,7 @@ public class statusPage extends AppCompatActivity {
         update(userPage);
     }
 
-    public void update(LinearLayout l) {
+    public void update(final LinearLayout l) {
         dbref.child("brody").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
@@ -162,7 +162,7 @@ public class statusPage extends AppCompatActivity {
                 }
             }
         }
-        ScrollView s = (ScrollView)chatRoom.getParent();
+        final ScrollView s = (ScrollView)chatRoom.getParent();
         s.post(new Runnable() {
             @Override
             public void run() {
