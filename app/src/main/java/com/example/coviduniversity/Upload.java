@@ -1,5 +1,8 @@
 package com.example.coviduniversity;
 
+import com.google.android.gms.auth.api.signin.internal.Storage;
+import com.google.firebase.storage.StorageReference;
+
 public class Upload {
     private String mName;
     private String mImageUrl;

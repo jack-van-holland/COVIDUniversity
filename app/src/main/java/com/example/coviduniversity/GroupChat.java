@@ -128,18 +128,24 @@ public class GroupChat extends AppCompatActivity {
     public void updateChat(LinearLayout chatRoom) {
         chatRoom.removeAllViews();
         chatRoom.setPadding(50, 50, 50, 200);
-        for (Message m : chat) {
+        for (int i = 0; i < chat.size(); i++) {
+            Message m = chat.get(i);
             TextView t = new TextView(this);
             if (m.getId().equals(user.getUid())) {
                 t.setBackgroundResource(R.drawable.sent_text_bubble);
             } else {
+                TextView name = new TextView(this);
+                Date d = new Date(m.getTime());
+                name.setText(m.getName() + " " + d.toString());
+                name.setPadding(10, 0, 10, 10);
+                chatRoom.addView(name);
                 t.setBackgroundResource(R.drawable.recieved_text_bubble);
             }
             t.setText(m.getText());
-            t.setPadding(50,25,50,25);
+            t.setPadding(50,5,50,25);
             chatRoom.addView(t);
             TextView dummy = new TextView(this);
-            dummy.setPadding(0, 10, 0, 10);
+            dummy.setPadding(0, 5, 0, 5);
             chatRoom.addView(dummy);
         }
         ScrollView s = (ScrollView)chatRoom.getParent();

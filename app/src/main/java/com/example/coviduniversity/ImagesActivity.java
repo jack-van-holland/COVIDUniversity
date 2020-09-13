@@ -55,7 +55,10 @@ public class ImagesActivity extends AppCompatActivity {
                     StorageReference sr = FirebaseStorage.getInstance().
                             getReference("uploads").child(upload.getPicName());
                     Log.d("!!!!!", sr.toString());
-                    upload.setPicName(sr.toString());
+
+                    //sr.getBytes(2000*2000).addOnSuccessListener
+
+                    //upload.setPicName(sr.toString());
                     //Log.d("!!!!!", sr.getDownloadUrl());
                     //Toast.makeText(ImagesActivity.this, "Working on it", Toast.LENGTH_SHORT).show();
                     mUploads.add(upload);
