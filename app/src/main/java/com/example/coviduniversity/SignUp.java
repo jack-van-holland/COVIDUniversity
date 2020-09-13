@@ -70,25 +70,22 @@ public class SignUp extends AppCompatActivity {
                 chooseProfilePic();
             }
         });
-        /*
-        //THIS exact block causes a crash.
-        StorageReference defaultPfp = rootStorageRef.child("profilePics/" + "default_profile_picture.jpg");
+        rootStorageRef = FirebaseStorage.getInstance().getReference();
+        StorageReference defaultPfp = rootStorageRef.child("profilePics/default_profile_picture.jpg");
         defaultPfp.getBytes(2000*2000).addOnSuccessListener(new OnSuccessListener<byte[]>() {
             @Override
             public void onSuccess(byte[] bytes) {
-                Log.d("!!!!!!", "success");
                 Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
                 profilePic.setImageBitmap(bitmap);
             }
         });
-        */
 
 
         auth = FirebaseAuth.getInstance();
         dbase = FirebaseDatabase.getInstance();
         dbref = dbase.getReference();
         user = auth.getCurrentUser();
-        rootStorageRef = FirebaseStorage.getInstance().getReference();
+
 
         final String[] info = new String[6];
         submit.setOnClickListener(new View.OnClickListener() {

@@ -1,10 +1,12 @@
 package com.example.coviduniversity;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -12,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -27,6 +30,8 @@ public class ImagesActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private ImageAdapter mAdapter;
 
+
+
     private ProgressBar mProgressCircle;
 
     private DatabaseReference mDatabaseRef;
@@ -36,6 +41,8 @@ public class ImagesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_images);
+
+        FloatingActionButton mButton = findViewById(R.id.button_to_upload);
 
         mRecyclerView = findViewById(R.id.recycler_view);
         mRecyclerView.setHasFixedSize(true);
@@ -52,22 +59,12 @@ public class ImagesActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                     Upload upload = postSnapshot.getValue(Upload.class);
-                    StorageReference sr = FirebaseStorage.getInstance().
-                            getReference("uploads").child(upload.getPicName());
-                    Log.d("!!!!!", sr.toString());
-
-                    //sr.getBytes(2000*2000).addOnSuccessListener
-
-                    //upload.setPicName(sr.toString());
-                    //Log.d("!!!!!", sr.getDownloadUrl());
-                    //Toast.makeText(ImagesActivity.this, "Working on it", Toast.LENGTH_SHORT).show();
                     mUploads.add(upload);
                 }
 
                 mAdapter = new ImageAdapter(ImagesActivity.this, mUploads);
-
                 mRecyclerView.setAdapter(mAdapter);
-                //mProgressCircle.setVisibility(View.INVISIBLE);
+                mProgressCircle.setVisibility(View.INVISIBLE);
             }
 
             @Override
@@ -76,5 +73,17 @@ public class ImagesActivity extends AppCompatActivity {
                 mProgressCircle.setVisibility(View.INVISIBLE);
             }
         });
+
+
+        mButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), FFCMenu.class);
+                startActivity(intent);
+            }
+        });
+
+
+
     }
 }
