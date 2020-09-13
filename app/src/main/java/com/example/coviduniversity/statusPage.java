@@ -1,6 +1,9 @@
 package com.example.coviduniversity;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -9,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
@@ -16,6 +20,8 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -138,6 +144,17 @@ public class statusPage extends AppCompatActivity {
                         picView.setText(u.getProfilePicStorageName());
                         picView.setPadding(10, 0, 10, 10);
                         chatRoom.addView(picView);
+                        //profile photo
+                        final ImageView pfpView = new ImageView(this);
+                        chatRoom.addView(pfpView);
+                        StorageReference userPfpInStorage = FirebaseStorage.getInstance().getReference().child("profilePics/" + u.getProfilePicStorageName());
+                        userPfpInStorage.getBytes(2000*2000).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+                            @Override
+                            public void onSuccess(byte[] bytes) {
+                                Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                                pfpView.setImageBitmap(bitmap);
+                            }
+                        });
                     }
                     dummy = new TextView(this);
                     dummy.setPadding(0, 5, 0, 5);
