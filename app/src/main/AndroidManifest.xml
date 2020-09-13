@@ -9,8 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".GroupChat"
-            android:parentActivityName=".Brody"></activity>
+        <activity android:name=".LeveringChat"></activity>
+        <activity
+            android:name=".GroupChat"
+            android:parentActivityName=".Brody" />
         <activity android:name=".Landing">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,7 +22,6 @@
         </activity>
         <activity android:name=".FFC" />
         <activity android:name=".FFCMenu" />
-
         <activity
             android:name=".Brody"
             android:parentActivityName=".MainActivity" />
@@ -35,7 +36,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ImagesActivity"></activity>
+        <activity android:name=".ImagesActivity" />
     </application>
 
 </manifest>

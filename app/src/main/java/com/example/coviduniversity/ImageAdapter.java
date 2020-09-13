@@ -42,7 +42,12 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
     @Override
     public void onBindViewHolder(ImageViewHolder holder, int position) {
         Upload uploadCurrent = mUploads.get(position);
-        holder.textViewName.setText(uploadCurrent.getName());
+        if (uploadCurrent.getUserName() == null) {
+            holder.textViewName.setText(uploadCurrent.getName() + " by a blue jay");
+        } else {
+            holder.textViewName.setText(uploadCurrent.getName() + " by "
+                    + uploadCurrent.getUserName());
+        }
 
         StorageReference sr = FirebaseStorage.getInstance()
                 .getReference("uploads")
