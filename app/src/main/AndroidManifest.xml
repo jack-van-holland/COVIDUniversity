@@ -16,6 +16,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".FFC" />
+        <activity android:name=".FFCMenu" />
+
         <activity
             android:name=".Brody"
             android:parentActivityName=".MainActivity" />
