@@ -1,15 +1,8 @@
 package com.example.coviduniversity;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -18,9 +11,11 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -159,6 +154,7 @@ public class SignUp extends AppCompatActivity {
         dbref.child("users").child(user.getUid()).child("major").setValue(major);
         dbref.child("users").child(user.getUid()).child("year").setValue(year);
         dbref.child("users").child(user.getUid()).child("profilePicStorageName").setValue(profilePicStorageName);
+        dbref.child("users").child(user.getUid()).child("id").setValue(user.getUid());
 
         user.updateProfile(nameChange);
 

@@ -30,12 +30,14 @@ public class statusPage extends AppCompatActivity {
     private FirebaseUser user;
 
     List<String> users;
+    List<User> allUsers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_status_page);
         users = new ArrayList<>();
+        allUsers = new ArrayList<>();
         auth = FirebaseAuth.getInstance();
 
         dbase = FirebaseDatabase.getInstance();
@@ -74,6 +76,34 @@ public class statusPage extends AppCompatActivity {
 
             }
         });
+        dbref.child("users").addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                allUsers.add(dataSnapshot.getValue(User.class));
+                updateChat(l);
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
     }
 
     public void updateChat(LinearLayout chatRoom) {
@@ -89,34 +119,31 @@ public class statusPage extends AppCompatActivity {
         dummy.setPadding(0, 5, 0, 5);
         chatRoom.addView(dummy);
         for (int i = 0; i < users.size(); i++) {
-            String userId = users.get(i);
-            TextView t = new TextView(this);
-            String name = dbref.child("users").child(userId).child("name").toString();
-            String major = dbref.child("users").child(userId).child("major").toString();
-            String year = dbref.child("users").child(userId).child("year").toString();
-            String pic = dbref.child("users").child(userId).child("profilePicStorageName").toString();
-
-            if (!userId.equals(user.getUid())) {
-                TextView nameView = new TextView(this);
-                nameView.setText(name);
-                nameView.setPadding(10, 0, 10, 10);
-                chatRoom.addView(nameView);
-                TextView majorView = new TextView(this);
-                majorView.setText(major);
-                majorView.setPadding(10, 0, 10, 10);
-                chatRoom.addView(majorView);
-                TextView yearView = new TextView(this);
-                yearView.setText(year);
-                yearView.setPadding(10, 0, 10, 10);
-                chatRoom.addView(yearView);
-                TextView picView = new TextView(this);
-                picView.setText(pic);
-                picView.setPadding(10, 0, 10, 10);
-                chatRoom.addView(picView);
+            for (User u: allUsers) {
+                if (u.getId().equals(users.get(i))) {
+                    if (!u.getId().equals(user.getUid())) {
+                        TextView nameView = new TextView(this);
+                        nameView.setText(u.getName());
+                        nameView.setPadding(10, 0, 10, 10);
+                        chatRoom.addView(nameView);
+                        TextView majorView = new TextView(this);
+                        majorView.setText(u.getMajor());
+                        majorView.setPadding(10, 0, 10, 10);
+                        chatRoom.addView(majorView);
+                        TextView yearView = new TextView(this);
+                        yearView.setText(u.getYear());
+                        yearView.setPadding(10, 0, 10, 10);
+                        chatRoom.addView(yearView);
+                        TextView picView = new TextView(this);
+                        picView.setText(u.getProfilePicStorageName());
+                        picView.setPadding(10, 0, 10, 10);
+                        chatRoom.addView(picView);
+                    }
+                    dummy = new TextView(this);
+                    dummy.setPadding(0, 5, 0, 5);
+                    chatRoom.addView(dummy);
+                }
             }
-            dummy = new TextView(this);
-            dummy.setPadding(0, 5, 0, 5);
-            chatRoom.addView(dummy);
         }
         ScrollView s = (ScrollView)chatRoom.getParent();
         s.post(new Runnable() {
