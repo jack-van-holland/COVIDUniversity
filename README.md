@@ -1,5 +1,5 @@
 <div>
-An android application developed as a JHU virtual campus with Angela Benton, Ruixuan Zhai, and Gary Yang for HopHacks 2020. 
+An android application developed as a JHU virtual campus by Jack Van Holland, Angela Benton, Ruixuan Zhai, and Gary Yang for HopHacks 2020. 
 
 ## Inspiration
 
